@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addTodo } from '../actions'
+import { addTodoAction } from '../actions/todos'
 import { TodoAction } from '../types'
 
 const AddTodo: React.FC<{ dispatch: (arg0: TodoAction) => void }> = ({
@@ -17,7 +17,7 @@ const AddTodo: React.FC<{ dispatch: (arg0: TodoAction) => void }> = ({
           if (!input.current?.value.trim()) {
             return
           }
-          dispatch(addTodo(input.current.value))
+          dispatch(addTodoAction(input.current.value))
           input.current.value = ''
         }}
       >

@@ -31,6 +31,12 @@ module.exports = {
         'semi': false,
       },
     ],
-    '@typescript-eslint/no-explicit-any': 'error',
-  },
+    '@typescript-eslint/no-explicit-any': [
+      'error',
+      {
+        'fixToUnknown': true,
+        'ignoreRestArgs': true
+      }
+    ]
+  }
 }

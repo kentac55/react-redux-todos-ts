@@ -1,18 +1,18 @@
-import {
-  VisibilityFilterType,
-  VisibilityFilterKinds,
-  VisibilityFilterAction,
-} from '../types'
+import { Reducer } from 'redux'
 
-export const visibilityFilter = (
+import { VisibilityFilterAction, VisibilityFilterKinds } from '../types'
+
+export const visibilityFilter: Reducer<
+  VisibilityFilterKinds,
+  VisibilityFilterAction
+> = (
   state = VisibilityFilterKinds.ALL,
   action: VisibilityFilterAction
 ): VisibilityFilterKinds => {
   switch (action.type) {
-    case VisibilityFilterType.SET:
+    case 'SET_VISIBILITY_FILTER':
       return action.filter
     default:
-      const _e: never = action.type
-      return _e
+      return state
   }
 }
