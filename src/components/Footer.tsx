@@ -1,18 +1,18 @@
 import React from 'react'
-import FilterLink from '../containers/FilterLink'
+import { LinkView } from '../components/Link'
 import { VisibilityFilterKinds } from '../types'
 
 export const Footer: React.FC = () => (
   <div>
     <span>Show: </span>
-    <FilterLink filter={VisibilityFilterKinds.ALL}>
+    <LinkView filter={VisibilityFilterKinds.ALL}>
       <p>All</p>
-    </FilterLink>
-    <FilterLink filter={VisibilityFilterKinds.ACTIVE}>
+    </LinkView>
+    <LinkView filter={VisibilityFilterKinds.ACTIVE}>
       <p>Active</p>
-    </FilterLink>
-    <FilterLink filter={VisibilityFilterKinds.COMPLETED}>
+    </LinkView>
+    <LinkView filter={VisibilityFilterKinds.COMPLETED}>
       <p>Completed</p>
-    </FilterLink>
+    </LinkView>
   </div>
 )

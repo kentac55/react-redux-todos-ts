@@ -1,23 +1,41 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleTodoAction } from '../actions'
 import { TodoView } from './Todo'
-import { Todo } from '../types'
+import { Todo, VisibilityFilterKinds } from '../types'
 
-type TodoListViewProps = {
+type TodoState = {
   todos: Todo[]
-  toggleTodo: (arg0: number) => void
+  visibilityFilter: VisibilityFilterKinds
 }
 
-export const TodoListView: React.FC<TodoListViewProps> = ({
-  todos,
-  toggleTodo,
-}) => (
-  <ul>
-    {todos.map(todo => (
-      <TodoView
-        key={todo.id}
-        {...todo}
-        onClick={(): void => toggleTodo(todo.id)}
-      />
-    ))}
-  </ul>
-)
+const todoSelector = ({ todos, visibilityFilter }: TodoState): Todo[] => {
+  switch (visibilityFilter) {
+    case VisibilityFilterKinds.ALL:
+      return todos
+    case VisibilityFilterKinds.COMPLETED:
+      return todos.filter(t => t.completed)
+    case VisibilityFilterKinds.ACTIVE:
+      return todos.filter(t => !t.completed)
+    default:
+      return todos
+  }
+}
+
+export const TodoListView: React.FC = () => {
+  const dispatch = useDispatch()
+  const todos = useSelector(todoSelector)
+  return (
+    <ul>
+      {todos.map(todo => (
+        <TodoView
+          key={todo.id}
+          {...todo}
+          onClick={(): void => {
+            dispatch(toggleTodoAction(todo.id))
+          }}
+        />
+      ))}
+    </ul>
+  )
+}

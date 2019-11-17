@@ -1,11 +1,9 @@
 import React from 'react'
-import { Action } from 'redux'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addTodoAction } from '../actions'
 
-type AddTodoDispatch = { dispatch: (arg0: Action) => void }
-
-const AddTodo: React.FC<AddTodoDispatch> = ({ dispatch }: AddTodoDispatch) => {
+export const AddTodo: React.FC = () => {
+  const dispatch = useDispatch()
   const input = React.createRef<HTMLInputElement>()
   return (
     <div>
@@ -25,5 +23,3 @@ const AddTodo: React.FC<AddTodoDispatch> = ({ dispatch }: AddTodoDispatch) => {
     </div>
   )
 }
-
-export default connect()(AddTodo)
