@@ -10,7 +10,7 @@ export const TodoView: React.FC<TodoViewProps> = ({
   onClick,
   completed,
   text,
-}: TodoViewProps) => (
+}) => (
   <li
     onClick={onClick}
     style={{

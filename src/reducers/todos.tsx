@@ -1,10 +1,10 @@
 import { Reducer } from 'redux'
 import { Todo, TodoAction } from '../types'
 
-const todos: Reducer<Todo[], TodoAction> = (
+export const todos: Reducer<Todo[], TodoAction> = (
   state: Todo[] = [],
   action: TodoAction
-): Todo[] => {
+) => {
   switch (action.type) {
     case 'ADD':
       return [
@@ -30,5 +30,3 @@ const todos: Reducer<Todo[], TodoAction> = (
       return state
   }
 }
-
-export default todos

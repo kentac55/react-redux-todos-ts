@@ -10,7 +10,7 @@ export const LinkView: React.FC<LinkViewProps> = ({
   active,
   children,
   onClick,
-}: LinkViewProps) => (
+}) => (
   <button
     onClick={onClick}
     disabled={active}

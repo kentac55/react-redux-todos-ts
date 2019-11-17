@@ -10,7 +10,7 @@ type TodoListViewProps = {
 export const TodoListView: React.FC<TodoListViewProps> = ({
   todos,
   toggleTodo,
-}: TodoListViewProps) => (
+}) => (
   <ul>
     {todos.map(todo => (
       <TodoView

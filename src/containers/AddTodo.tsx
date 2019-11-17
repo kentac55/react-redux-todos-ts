@@ -3,17 +3,15 @@ import { connect } from 'react-redux'
 import { addTodoAction } from '../actions/todos'
 import { TodoAction } from '../types'
 
-const AddTodo: React.FC<{ dispatch: (arg0: TodoAction) => void }> = ({
-  dispatch,
-}: {
-  dispatch: (arg0: TodoAction) => void
-}) => {
+type AddTodoDispatch = { dispatch: (arg0: TodoAction) => void }
+
+const AddTodo: React.FC<AddTodoDispatch> = ({ dispatch }: AddTodoDispatch) => {
   const input = React.createRef<HTMLInputElement>()
   return (
     <div>
       <form
-        onSubmit={(e: React.FormEvent<HTMLFormElement>): void => {
-          e.preventDefault()
+        onSubmit={(ev: React.FormEvent<HTMLFormElement>): void => {
+          ev.preventDefault()
           if (!input.current?.value.trim()) {
             return
           }
