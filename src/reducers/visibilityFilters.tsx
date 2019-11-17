@@ -1,15 +1,9 @@
-import { Reducer } from 'redux'
+import { VisibilityFilterKinds } from '../types'
+import { reducerWithInitialState } from 'typescript-fsa-reducers'
+import { setVisibilityFilterAction } from '../actions'
 
-import { VisibilityFilterAction, VisibilityFilterKinds } from '../types'
-
-export const visibilityFilter: Reducer<
-  VisibilityFilterKinds,
-  VisibilityFilterAction
-> = (state = VisibilityFilterKinds.ALL, action: VisibilityFilterAction) => {
-  switch (action.type) {
-    case 'SET_VISIBILITY_FILTER':
-      return action.filter
-    default:
-      return state
-  }
-}
+export const visibilityFilterReducer = reducerWithInitialState(
+  VisibilityFilterKinds.ALL
+).case(setVisibilityFilterAction, (_, filter) => {
+  return filter
+})

@@ -1,9 +1,9 @@
 import React from 'react'
+import { Action } from 'redux'
 import { connect } from 'react-redux'
-import { addTodoAction } from '../actions/todos'
-import { TodoAction } from '../types'
+import { addTodoAction } from '../actions'
 
-type AddTodoDispatch = { dispatch: (arg0: TodoAction) => void }
+type AddTodoDispatch = { dispatch: (arg0: Action) => void }
 
 const AddTodo: React.FC<AddTodoDispatch> = ({ dispatch }: AddTodoDispatch) => {
   const input = React.createRef<HTMLInputElement>()

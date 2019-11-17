@@ -1,32 +1,19 @@
-import { Reducer } from 'redux'
-import { Todo, TodoAction } from '../types'
+import { reducerWithInitialState } from 'typescript-fsa-reducers'
+import { Todo } from '../types'
+import { getId } from '../repository'
+import { addTodoAction, toggleTodoAction } from '../actions'
 
-export const todos: Reducer<Todo[], TodoAction> = (
-  state: Todo[] = [],
-  action: TodoAction
-) => {
-  switch (action.type) {
-    case 'ADD':
-      return [
-        ...state,
-        {
-          id: action.id,
-          text: action.text,
-          completed: false,
-        },
-      ]
-    case 'TOGGLE':
-      return state.map(
-        (todo: Todo): Todo => {
-          return todo.id === action.id
-            ? {
-                ...todo,
-                completed: !todo.completed,
-              }
-            : todo
-        }
-      )
-    default:
-      return state
-  }
-}
+export const todoReducer = reducerWithInitialState([] as Todo[])
+  .case(addTodoAction, (state, text) => {
+    return [...state, { id: getId(), text, completed: false }]
+  })
+  .case(toggleTodoAction, (state, id) => {
+    return state.map(todo => {
+      return todo.id === id
+        ? {
+            ...todo,
+            completed: !todo.completed,
+          }
+        : todo
+    })
+  })

@@ -1,7 +1,8 @@
+import { Action } from 'redux'
 import { connect } from 'react-redux'
-import { setVisibilityFilterAction } from '../actions/visibilityFilters'
+import { setVisibilityFilterAction } from '../actions'
 import { LinkView } from '../components/Link'
-import { VisibilityFilterAction, VisibilityFilterKinds } from '../types'
+import { VisibilityFilterKinds } from '../types'
 
 const mapStateToProps = (
   state: { visibilityFilter: VisibilityFilterKinds },
@@ -11,7 +12,7 @@ const mapStateToProps = (
 })
 
 const mapDispatchToProps = (
-  dispatch: (arg0: VisibilityFilterAction) => void,
+  dispatch: (arg0: Action) => void,
   ownProps: { filter: VisibilityFilterKinds }
 ): { onClick: () => void } => ({
   onClick: (): void => dispatch(setVisibilityFilterAction(ownProps.filter)),
