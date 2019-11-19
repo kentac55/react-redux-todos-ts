@@ -1,12 +1,12 @@
 import React from 'react'
 import { Footer } from './Footer'
-import { AddTodo } from '../components/AddTodo'
-import { TodoListView } from '../components/TodoList'
+import { AddTodoContainer } from '../containers/AddTodo'
+import { TodoListContainer } from '../containers/TodoList'
 
 export const App: React.FC = () => (
   <div>
-    <AddTodo />
-    <TodoListView />
+    <AddTodoContainer />
+    <TodoListContainer />
     <Footer />
   </div>
 )

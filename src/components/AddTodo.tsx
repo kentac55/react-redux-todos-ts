@@ -1,9 +1,10 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { addTodoAction } from '../actions'
 
-export const AddTodo: React.FC = () => {
-  const dispatch = useDispatch()
+type AddTodoViewProps = {
+  dispatcher: (s: string) => () => void
+}
+
+export const AddTodoView: React.FC<AddTodoViewProps> = ({ dispatcher }) => {
   const input = React.createRef<HTMLInputElement>()
   return (
     <div>
@@ -13,7 +14,7 @@ export const AddTodo: React.FC = () => {
           if (!input.current?.value.trim()) {
             return
           }
-          dispatch(addTodoAction(input.current.value))
+          dispatcher(input.current.value)()
           input.current.value = ''
         }}
       >
