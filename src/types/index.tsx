@@ -1,5 +1,8 @@
 export type Todo = {
   id: number
+} & NewTodo
+
+export type NewTodo = {
   completed: boolean
   text: string
 }
