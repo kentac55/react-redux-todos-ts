@@ -3,18 +3,22 @@ import { TodoView } from './Todo'
 import { Todo } from '../types'
 
 type TodoListViewProps = {
-  dispatcher: (todo: Todo) => () => void
+  toggleTodoDispatcher: (todo: Todo) => () => void
   todos: Todo[]
 }
 
 export const TodoListView: React.FC<TodoListViewProps> = ({
-  dispatcher,
+  toggleTodoDispatcher,
   todos,
 }) => {
   return (
     <ul>
       {todos.map(todo => (
-        <TodoView key={todo.id} {...todo} onClick={dispatcher(todo)} />
+        <TodoView
+          key={todo.id}
+          {...todo}
+          onClick={toggleTodoDispatcher(todo)}
+        />
       ))}
     </ul>
   )

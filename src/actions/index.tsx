@@ -1,46 +1,53 @@
-import actionCreatorFactory, { Action as FSA } from 'typescript-fsa'
+import actionCreatorFactory from 'typescript-fsa'
 import { VisibilityFilterKinds } from '../types'
 import { Todo } from '../types'
 
 const actionCreator = actionCreatorFactory('saga')
 
-export const addTodoOp = actionCreator<{ text: string }>('AddTodoOp')
+type AddTodoProp = {
+  text: string
+}
+export const addTodoOp = actionCreator<AddTodoProp>('AddTodoOp')
 export const addTodoAction = actionCreator.async<
-  { text: string },
-  { todo: Todo }
->('ADD')
-export const addTodoSucceeded = actionCreator<{ todo: Todo }>(
-  'AddTodoSucceeded'
-)
-
-export const toggleTodoOp = actionCreator<{ todo: Todo }>('ToggleTodo')
-export const toggleTodoAction = actionCreator.async<
+  AddTodoProp,
   { todo: Todo },
-  { todo: Todo }
->('TOGGLE')
-export const toggleTodoSucceeded = actionCreator<{ todo: Todo }>(
-  'ToggleTodoSucceeded'
-)
+  { error: Error }
+>('AddTodo')
+
+type ToggleTodoProp = {
+  todo: Todo
+}
+export const toggleTodoOp = actionCreator<ToggleTodoProp>('ToggleTodoOp')
+export const toggleTodoAction = actionCreator.async<
+  ToggleTodoProp,
+  { todo: Todo },
+  { error: Error }
+>('ToggleTodo')
 
 export const setVisibilityFilterAction = actionCreator<VisibilityFilterKinds>(
   'SET'
 )
 
-export const getTodoOp = actionCreator<void>('GetTodoOp')
+type getTodoProp = {
+  id: number
+}
+export const getTodoOp = actionCreator<getTodoProp>('GetTodoOp')
 export const getTodoAction = actionCreator.async<
-  { id: number },
-  { todo: Todo }
->('GET')
-export const getTodoSucceeded = actionCreator<{ todo: Todo }>(
-  'GetTodoSucceeded'
-)
+  getTodoProp,
+  { todo: Todo },
+  { error: Error }
+>('GetTodo')
 
-export const getTodosOp = actionCreator<void>('GetTodosOp')
-export const getTodosAction = actionCreator.async<{}, { todos: Todo[] }>(
-  'GETALL'
-)
-export const getTodosSucceeded = actionCreator<{ todos: Todo[] }>(
-  'GetTodosSucceeded'
-)
+export const getTodosOp = actionCreator('GetTodosOp')
+export const getTodosAction = actionCreator.async<
+  void,
+  { todos: Todo[] },
+  { error: Error }
+>('GetAll')
 
-export const fetchSagaFailed = actionCreator<{ e: Error }>('fetchSagaFailed')
+export const initOp = actionCreator('InitOp')
+export const initAction = actionCreator.async<
+  void,
+  { todos: Todo[] },
+  { error: Error }
+>('Init')

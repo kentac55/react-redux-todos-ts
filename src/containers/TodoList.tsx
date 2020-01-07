@@ -28,7 +28,7 @@ export const TodoListContainer: React.FC = () => {
   return (
     <TodoListView
       todos={todos}
-      dispatcher={(todo: Todo) => (): void => {
+      toggleTodoDispatcher={(todo: Todo) => (): void => {
         dispatch(toggleTodoOp({ todo }))
       }}
     />
