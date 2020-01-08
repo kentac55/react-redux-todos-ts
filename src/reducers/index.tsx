@@ -4,7 +4,7 @@ import { visibilityFilterReducer } from './visibilityFilters'
 import { initReducer } from './init'
 
 export default combineReducers({
+  init: initReducer,
   todos: todoReducer,
   visibilityFilter: visibilityFilterReducer,
-  init: initReducer,
 })

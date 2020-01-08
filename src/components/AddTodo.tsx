@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 type AddTodoViewProps = {
   dispatcher: (s: string) => () => void
 }
 
 export const AddTodoView: React.FC<AddTodoViewProps> = ({ dispatcher }) => {
-  const input = React.createRef<HTMLInputElement>()
+  const input = useRef<HTMLInputElement>(null)
   return (
     <div>
       <form

@@ -1,8 +1,16 @@
 import actionCreatorFactory from 'typescript-fsa'
+import { AxiosError } from 'axios'
 import { VisibilityFilterKinds } from '../types'
 import { Todo } from '../types'
 
 const actionCreator = actionCreatorFactory('saga')
+
+type TodoResult = {
+  todo: Todo
+}
+type TodosResult = {
+  todos: Todo[]
+}
 
 type AddTodoProp = {
   text: string
@@ -10,8 +18,8 @@ type AddTodoProp = {
 export const addTodoOp = actionCreator<AddTodoProp>('AddTodoOp')
 export const addTodoAction = actionCreator.async<
   AddTodoProp,
-  { todo: Todo },
-  { error: Error }
+  TodoResult,
+  AxiosError
 >('AddTodo')
 
 type ToggleTodoProp = {
@@ -20,8 +28,8 @@ type ToggleTodoProp = {
 export const toggleTodoOp = actionCreator<ToggleTodoProp>('ToggleTodoOp')
 export const toggleTodoAction = actionCreator.async<
   ToggleTodoProp,
-  { todo: Todo },
-  { error: Error }
+  TodoResult,
+  AxiosError
 >('ToggleTodo')
 
 export const setVisibilityFilterAction = actionCreator<VisibilityFilterKinds>(
@@ -34,20 +42,18 @@ type getTodoProp = {
 export const getTodoOp = actionCreator<getTodoProp>('GetTodoOp')
 export const getTodoAction = actionCreator.async<
   getTodoProp,
-  { todo: Todo },
-  { error: Error }
+  TodoResult,
+  AxiosError
 >('GetTodo')
 
 export const getTodosOp = actionCreator('GetTodosOp')
 export const getTodosAction = actionCreator.async<
   void,
-  { todos: Todo[] },
-  { error: Error }
+  TodosResult,
+  AxiosError
 >('GetAll')
 
 export const initOp = actionCreator('InitOp')
-export const initAction = actionCreator.async<
-  void,
-  { todos: Todo[] },
-  { error: Error }
->('Init')
+export const initAction = actionCreator.async<void, TodosResult, AxiosError>(
+  'Init'
+)

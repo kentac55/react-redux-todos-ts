@@ -27,3 +27,14 @@ export const todoReducer = reducerWithInitialState([] as Todo[])
         : t
     })
   })
+  .case(toggleTodoAction.failed, (_, { error }) => {
+    if (error.response?.status === 404) {
+      return [{ id: -1, text: 'cannot find', completed: false }]
+    } else if (error.response) {
+      return [{ id: -1, text: 'unknown error', completed: false }]
+    } else if (error.request) {
+      return [{ id: -1, text: 'connection error', completed: false }]
+    } else {
+      return [{ id: -1, text: error.message, completed: false }]
+    }
+  })

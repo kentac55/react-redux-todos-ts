@@ -1,7 +1,6 @@
 import { SagaIterator } from 'redux-saga'
-import fetch from 'cross-fetch'
 import { bindAsyncAction } from 'typescript-fsa-redux-saga'
-import { call, fork, takeEvery, takeLatest } from 'redux-saga/effects'
+import { call, delay, fork, takeEvery, takeLatest } from 'redux-saga/effects'
 import {
   addTodoAction,
   addTodoOp,
@@ -16,51 +15,28 @@ import {
 } from '../actions'
 import { Todo } from '../types'
 import { _BaseUrl } from '../util'
+import axios, { AxiosRequestConfig } from 'axios'
 
-const _fetch = async ({
-  path,
-  params,
-  options,
-}: {
-  path: string
-  params?: Record<string, unknown>
-  options?: RequestInit
-}): Promise<unknown> => {
-  const baseUrl = _BaseUrl || 'http://localhost:8080'
-  const url = new URL(baseUrl + path)
-
-  if (params) {
-    Object.entries(params).forEach(([k, v]) => {
-      url.searchParams.append(k, String(v || ''))
-    })
-  }
-
-  return (await fetch(url.toString(), options)).json()
+const _fetch = async (options: AxiosRequestConfig): Promise<unknown> => {
+  const baseURL = _BaseUrl || 'http://localhost:8080'
+  const client = axios.create({
+    baseURL,
+  })
+  return (await client.request(options)).data
 }
 
 const addTodoWorker = bindAsyncAction(addTodoAction)(function*(
   params
 ): SagaIterator {
-  const body = {
+  const data = {
     completed: false,
     text: params.text,
   }
 
-  console.log(body)
   const todo: Todo = yield call(_fetch, {
-    path: '/tasks',
-    options: {
-      method: 'POST',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      redirect: 'follow',
-      referrer: 'no-referrer',
-      body: JSON.stringify(body),
-    },
+    url: '/tasks',
+    method: 'POST',
+    data,
   })
   return { todo }
 })
@@ -68,25 +44,15 @@ const addTodoWorker = bindAsyncAction(addTodoAction)(function*(
 const toggleTodoWorker = bindAsyncAction(toggleTodoAction)(function*(
   params
 ): SagaIterator {
-  const body = {
+  const data = {
     completed: !params.todo.completed,
     text: params.todo.text,
   }
-  console.log(body)
+
   const todo: Todo = yield call(_fetch, {
-    path: `/tasks/${params.todo.id}`,
-    options: {
-      method: 'PUT',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      redirect: 'follow',
-      referrer: 'no-referrer',
-      body: JSON.stringify(body),
-    },
+    url: `/tasks//${params.todo.id}`,
+    method: 'PUT',
+    data,
   })
   return { todo }
 })
@@ -94,19 +60,20 @@ const toggleTodoWorker = bindAsyncAction(toggleTodoAction)(function*(
 const getTodoWorker = bindAsyncAction(getTodoAction)(function*(
   params
 ): SagaIterator {
-  const todo: Todo = yield call(_fetch, { path: `/tasks/${params.id}` })
+  const todo: Todo = yield call(_fetch, { url: `/tasks/${params.id}` })
   return { todo }
 })
 
 const getTodosWorker = bindAsyncAction(getTodosAction)(
   function*(): SagaIterator {
-    const todos: Todo[] = yield call(_fetch, { path: `/tasks` })
+    const todos: Todo[] = yield call(_fetch, { url: `/tasks` })
     return { todos }
   }
 )
 
 const initWorker = bindAsyncAction(initAction)(function*(): SagaIterator {
-  const todos: Todo[] = yield call(_fetch, { path: `/tasks` })
+  yield delay(3000)
+  const todos: Todo[] = yield call(_fetch, { url: `/tasks` })
   return { todos }
 })
 
