@@ -1,19 +1,40 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import { Todo } from '../types'
-import { getId } from '../repository'
-import { addTodoAction, toggleTodoAction } from '../actions'
+import { addTodoEv, initEv, getTodosEv, toggleTodoEv } from '../actions'
 
 export const todoReducer = reducerWithInitialState([] as Todo[])
-  .case(addTodoAction, (state, text) => {
-    return [...state, { id: getId(), text, completed: false }]
+  .case(initEv.done, (_, { result }) => {
+    if (result.type === 'Ok') {
+      return result.contents
+    } else {
+      return []
+    }
   })
-  .case(toggleTodoAction, (state, id) => {
-    return state.map(todo => {
-      return todo.id === id
-        ? {
-            ...todo,
-            completed: !todo.completed,
-          }
-        : todo
-    })
+  .case(addTodoEv.done, (state, { result }) => {
+    if (result.type === 'Ok') {
+      return [...state, result.contents]
+    } else {
+      return state
+    }
+  })
+  .case(toggleTodoEv.done, (state, { result }) => {
+    if (result.type === 'Ok') {
+      return state.map(todo => {
+        return todo.id === result.contents.id
+          ? {
+              ...todo,
+              completed: !todo.completed,
+            }
+          : todo
+      })
+    } else {
+      return state
+    }
+  })
+  .case(getTodosEv.done, (_, { result }) => {
+    if (result.type === 'Ok') {
+      return result.contents
+    } else {
+      return []
+    }
   })

@@ -1,7 +1,7 @@
 import React from 'react'
 
 type AddTodoViewProps = {
-  dispatcher: (s: string) => () => void
+  dispatcher: (text: string) => () => void
 }
 
 export const AddTodoView: React.FC<AddTodoViewProps> = ({ dispatcher }) => {

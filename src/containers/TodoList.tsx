@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleTodoAction } from '../actions'
+import { toggleTodoOp } from '../actions'
 import { TodoListView } from '../components/TodoList'
 import { Todo, VisibilityFilterKinds } from '../types'
 
@@ -28,8 +28,8 @@ export const TodoListContainer: React.FC = () => {
   return (
     <TodoListView
       todos={todos}
-      dispatcher={(n: number) => (): void => {
-        dispatch(toggleTodoAction(n))
+      dispatcher={(todo: Todo) => (): void => {
+        dispatch(toggleTodoOp({ todo }))
       }}
     />
   )
