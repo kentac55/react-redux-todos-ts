@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setVisibilityFilterAction } from '../actions'
+import { setVisibilityFilter } from '../actions'
 import { VisibilityFilter } from '../types'
 import { LinkView } from '../components/Link'
 
@@ -21,7 +21,7 @@ export const LinkContainer: React.FC<LinkContainerProps> = ({
   const active = useSelector(filterSelector) === filter
   const dispatch = useDispatch()
   const onClick = (): void => {
-    dispatch(setVisibilityFilterAction(filter))
+    dispatch(setVisibilityFilter(filter))
   }
   return (
     <LinkView active={active} onClick={onClick}>

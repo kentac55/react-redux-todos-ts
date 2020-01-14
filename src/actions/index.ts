@@ -6,42 +6,44 @@ const actionCreator = actionCreatorFactory()
 type AddTodoProp = {
   text: string
 }
-export const addTodoEv = actionCreator.async<
+export const addTodo = actionCreator.async<
   AddTodoProp,
   AsyncOpResult<Todo>,
   Error
->('AddTodoEv')
+>('AddTodo')
 
 type ToggleTodoProp = {
   todo: Todo
 }
-export const toggleTodoEv = actionCreator.async<
+export const toggleTodo = actionCreator.async<
   ToggleTodoProp,
   AsyncOpResult<Todo>,
   Error
->('ToggleTodoEv')
+>('ToggleTodo')
 
-export const setVisibilityFilterAction = actionCreator<VisibilityFilter>('SET')
+export const setVisibilityFilter = actionCreator<VisibilityFilter>(
+  'SetVisibilityFilter'
+)
 
 type GetTodoProp = {
   id: number
 }
-export const getTodoEv = actionCreator.async<
+export const getTodo = actionCreator.async<
   GetTodoProp,
   AsyncOpResult<Todo>,
   Error
->('GetTodoEv')
+>('GetTodo')
 
 type GetTodosProp = void
-export const getTodosEv = actionCreator.async<
+export const getTodos = actionCreator.async<
   GetTodosProp,
   AsyncOpResult<Todo[]>,
   Error
->('GetTogosEv')
+>('GetTogos')
 
 type InitProp = void
-export const initEv = actionCreator.async<
+export const initApp = actionCreator.async<
   InitProp,
   AsyncOpResult<Todo[]>,
   Error
->('InitEv')
+>('InitApp')

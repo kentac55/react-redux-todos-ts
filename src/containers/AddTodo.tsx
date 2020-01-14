@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { addTodoEv } from '../actions'
+import { addTodo } from '../actions'
 import { AddTodoView } from '../components/AddTodo'
 
 export const AddTodoContainer: React.FC = () => {
@@ -8,7 +8,7 @@ export const AddTodoContainer: React.FC = () => {
   return (
     <AddTodoView
       dispatcher={(text: string) => (): void => {
-        dispatch(addTodoEv.started({ text }))
+        dispatch(addTodo.started({ text }))
       }}
     />
   )

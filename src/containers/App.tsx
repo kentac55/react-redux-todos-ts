@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { createSelector } from 'reselect'
-import { initEv } from '../actions'
+import { initApp } from '../actions'
 import { AppView } from '../components/App'
 import { useTypedSelector, RootState } from '../reducers'
 
@@ -14,7 +14,7 @@ export const AppContainer: React.FC = () => {
   const dispatch = useDispatch()
   const { loading, loaded, error } = useTypedSelector(appSelector)
   const loadDispatcher = (): void => {
-    dispatch(initEv.started())
+    dispatch(initApp.started())
   }
   return (
     <AppView

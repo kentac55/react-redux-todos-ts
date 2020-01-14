@@ -1,27 +1,27 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import { Todo } from '../types'
-import { addTodoEv, initEv, getTodosEv, toggleTodoEv } from '../actions'
+import { addTodo, initApp, getTodos, toggleTodo } from '../actions'
 
 type TodoState = {
   todos: Todo[]
 }
 
 export const todoReducer = reducerWithInitialState({ todos: [] } as TodoState)
-  .case(initEv.done, (_, { result }) => {
+  .case(initApp.done, (_, { result }) => {
     if (result.type === 'Ok') {
       return { todos: result.contents }
     } else {
       return { todos: [] }
     }
   })
-  .case(addTodoEv.done, (state, { result }) => {
+  .case(addTodo.done, (state, { result }) => {
     if (result.type === 'Ok') {
       return { todos: [...state.todos, result.contents] }
     } else {
       return state
     }
   })
-  .case(toggleTodoEv.done, (state, { result }) => {
+  .case(toggleTodo.done, (state, { result }) => {
     if (result.type === 'Ok') {
       return {
         todos: state.todos.map(todo => {
@@ -37,7 +37,7 @@ export const todoReducer = reducerWithInitialState({ todos: [] } as TodoState)
       return state
     }
   })
-  .case(getTodosEv.done, (_, { result }) => {
+  .case(getTodos.done, (_, { result }) => {
     if (result.type === 'Ok') {
       return { todos: result.contents }
     } else {

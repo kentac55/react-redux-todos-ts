@@ -1,11 +1,5 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
-import {
-  addTodoEv,
-  initEv,
-  getTodoEv,
-  getTodosEv,
-  toggleTodoEv,
-} from '../actions'
+import { addTodo, initApp, getTodo, getTodos, toggleTodo } from '../actions'
 import { AsyncOpResult } from '../types'
 
 type AppState = {
@@ -52,22 +46,17 @@ export const appReducer = reducerWithInitialState({
   error: null,
 } as AppState)
   .cases(
-    [
-      addTodoEv.started,
-      getTodoEv.started,
-      initEv.started,
-      toggleTodoEv.started,
-    ],
+    [addTodo.started, getTodo.started, initApp.started, toggleTodo.started],
     startedHandler
   )
-  .case(getTodosEv.started, startedHandler)
+  .case(getTodos.started, startedHandler)
   .cases(
-    [addTodoEv.failed, getTodoEv.failed, initEv.failed, toggleTodoEv.failed],
+    [addTodo.failed, getTodo.failed, initApp.failed, toggleTodo.failed],
     failedHandler
   )
-  .case(getTodosEv.failed, failedHandler)
+  .case(getTodos.failed, failedHandler)
   .cases(
-    [addTodoEv.done, getTodoEv.done, initEv.done, toggleTodoEv.done],
+    [addTodo.done, getTodo.done, initApp.done, toggleTodo.done],
     doneHandler
   )
-  .case(getTodosEv.done, doneHandler)
+  .case(getTodos.done, doneHandler)

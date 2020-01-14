@@ -2,13 +2,7 @@ import fetch from 'cross-fetch'
 import { SagaIterator } from 'redux-saga'
 import { bindAsyncAction } from 'typescript-fsa-redux-saga'
 import { call, delay, fork, takeEvery, takeLatest } from 'redux-saga/effects'
-import {
-  addTodoEv,
-  getTodoEv,
-  getTodosEv,
-  toggleTodoEv,
-  initEv,
-} from '../actions'
+import { addTodo, getTodo, getTodos, toggleTodo, initApp } from '../actions'
 import { AsyncOpResult } from '../types'
 
 const remapResponse = async (
@@ -104,7 +98,7 @@ const execFetch = async ({
 const bindAsyncActionOptions = { skipStartedAction: true }
 
 const addTodoWorker = bindAsyncAction(
-  addTodoEv,
+  addTodo,
   bindAsyncActionOptions
 )(function*({ text }): SagaIterator {
   return yield call(execFetch, {
@@ -120,7 +114,7 @@ const addTodoWorker = bindAsyncAction(
 })
 
 const toggleTodoWorker = bindAsyncAction(
-  toggleTodoEv,
+  toggleTodo,
   bindAsyncActionOptions
 )(function*({ todo }): SagaIterator {
   return yield call(execFetch, {
@@ -136,7 +130,7 @@ const toggleTodoWorker = bindAsyncAction(
 })
 
 const getTodoWorker = bindAsyncAction(
-  getTodoEv,
+  getTodo,
   bindAsyncActionOptions
 )(function*({ id }): SagaIterator {
   return yield call(execFetch, {
@@ -145,7 +139,7 @@ const getTodoWorker = bindAsyncAction(
 })
 
 const getTodosWorker = bindAsyncAction(
-  getTodosEv,
+  getTodos,
   bindAsyncActionOptions
 )(function*(): SagaIterator {
   return yield call(execFetch, {
@@ -154,7 +148,7 @@ const getTodosWorker = bindAsyncAction(
 })
 
 const initWorker = bindAsyncAction(
-  initEv,
+  initApp,
   bindAsyncActionOptions
 )(function*(): SagaIterator {
   yield delay(3000)
@@ -164,31 +158,31 @@ const initWorker = bindAsyncAction(
 })
 
 function* addTodoHandler(): SagaIterator {
-  yield takeEvery(addTodoEv.started, function*({ payload }) {
+  yield takeEvery(addTodo.started, function*({ payload }) {
     yield call(addTodoWorker, payload)
   })
 }
 
 function* toggleTodoHandler(): SagaIterator {
-  yield takeEvery(toggleTodoEv.started, function*({ payload }) {
+  yield takeEvery(toggleTodo.started, function*({ payload }) {
     yield call(toggleTodoWorker, payload)
   })
 }
 
 function* getTodoHandler(): SagaIterator {
-  yield takeLatest(getTodoEv.started, function*({ payload }) {
+  yield takeLatest(getTodo.started, function*({ payload }) {
     yield call(getTodoWorker, payload)
   })
 }
 
 function* getTodosHandler(): SagaIterator {
-  yield takeLatest(getTodosEv.started, function*({ payload }) {
+  yield takeLatest(getTodos.started, function*({ payload }) {
     yield call(getTodosWorker, payload)
   })
 }
 
 function* initHandler(): SagaIterator {
-  yield takeLatest(initEv.started, function*({ payload }) {
+  yield takeLatest(initApp.started, function*({ payload }) {
     yield call(initWorker, payload)
   })
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { createSelector } from 'reselect'
-import { toggleTodoEv } from '../actions'
+import { toggleTodo } from '../actions'
 import { TodoListView } from '../components/TodoList'
 import { RootState, useTypedSelector } from '../reducers'
 import { todoReducer } from '../reducers/todos'
@@ -35,7 +35,7 @@ export const TodoListContainer: React.FC = () => {
     <TodoListView
       todos={todos}
       dispatcher={(todo: Todo) => (): void => {
-        dispatch(toggleTodoEv.started({ todo }))
+        dispatch(toggleTodo.started({ todo }))
       }}
     />
   )
