@@ -6,7 +6,7 @@ import createSagaMiddleWare from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import logger from 'redux-logger'
 import { AppContainer } from './containers/App'
-import rootReducer from './reducers'
+import { rootReducer } from './reducers'
 import rootSaga from './saga'
 
 const sagaMiddleware = createSagaMiddleWare()

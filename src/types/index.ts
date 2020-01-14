@@ -7,11 +7,7 @@ export type NewTodo = {
   text: string
 }
 
-export enum VisibilityFilterKinds {
-  ALL = 'SHOW_ALL',
-  COMPLETED = 'SHOW_COMPLETED',
-  ACTIVE = 'SHOW_ACTIVE',
-}
+export type VisibilityFilter = 'SHOW_ALL' | 'SHOW_COMPLETED' | 'SHOW_ACTIVE'
 
 type AsyncOpOkType = 'Ok'
 

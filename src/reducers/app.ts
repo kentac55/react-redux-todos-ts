@@ -6,8 +6,16 @@ import {
   getTodosEv,
   toggleTodoEv,
 } from '../actions'
-import { AppState } from '../containers/App'
 import { AsyncOpResult } from '../types'
+
+type AppState = {
+  loading: boolean
+  loaded: boolean
+  error: {
+    type: string
+    message: string | null
+  } | null
+}
 
 const failedHandler = (_: unknown, { error }: { error: Error }): AppState => {
   return {

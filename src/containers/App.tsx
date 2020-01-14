@@ -1,27 +1,18 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { createSelector } from 'reselect'
 import { initOp } from '../actions'
 import { AppView } from '../components/App'
+import { useTypedSelector, RootState } from '../reducers'
 
-export type AppState = {
-  loading: boolean
-  loaded: boolean
-  error: {
-    type: string
-    message: string | null
-  } | null
-}
-
-/* const appSelector = ({ app }: { app: AppState }): AppState => app */
 const appSelector = createSelector(
-  (state: { app: AppState }) => state.app,
+  (state: RootState) => state.app,
   app => app
 )
 
 export const AppContainer: React.FC = () => {
   const dispatch = useDispatch()
-  const { loading, loaded, error } = useSelector(appSelector)
+  const { loading, loaded, error } = useTypedSelector(appSelector)
   const loadDispatcher = (): void => {
     dispatch(initOp())
   }

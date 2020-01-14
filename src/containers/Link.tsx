@@ -1,18 +1,17 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setVisibilityFilterAction } from '../actions'
-import { VisibilityFilterKinds } from '../types'
+import { VisibilityFilter } from '../types'
 import { LinkView } from '../components/Link'
 
-type FilterState = { visibilityFilter: VisibilityFilterKinds }
+type FilterState = { visibilityFilter: VisibilityFilter }
 
-const filterSelector = ({
-  visibilityFilter,
-}: FilterState): VisibilityFilterKinds => visibilityFilter
+const filterSelector = ({ visibilityFilter }: FilterState): VisibilityFilter =>
+  visibilityFilter
 
 type LinkContainerProps = {
   children: JSX.Element
-  filter: VisibilityFilterKinds
+  filter: VisibilityFilter
 }
 
 export const LinkContainer: React.FC<LinkContainerProps> = ({

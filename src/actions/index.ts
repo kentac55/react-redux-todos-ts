@@ -1,5 +1,5 @@
 import actionCreatorFactory from 'typescript-fsa'
-import { AsyncOpResult, Todo, VisibilityFilterKinds } from '../types'
+import { AsyncOpResult, Todo, VisibilityFilter } from '../types'
 
 const actionCreator = actionCreatorFactory()
 
@@ -23,9 +23,7 @@ export const toggleTodoEv = actionCreator.async<
   Error
 >('ToggleTodoEv')
 
-export const setVisibilityFilterAction = actionCreator<VisibilityFilterKinds>(
-  'SET'
-)
+export const setVisibilityFilterAction = actionCreator<VisibilityFilter>('SET')
 
 type GetTodoProp = {
   id: number
