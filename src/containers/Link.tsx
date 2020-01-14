@@ -4,7 +4,7 @@ import { setVisibilityFilter } from '../actions'
 import { LinkView } from '../components/Link'
 import { filterSelector } from '../selectors'
 import { VisibilityFilter } from '../types'
-import { useTypedSelector } from '../reducers'
+import { useTypedSelector } from '../hooks'
 
 type LinkContainerProps = {
   children: JSX.Element

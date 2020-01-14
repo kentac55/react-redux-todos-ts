@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleTodo } from '../actions'
 import { TodoListView } from '../components/TodoList'
-import { useTypedSelector } from '../reducers'
+import { useTypedSelector } from '../hooks'
 import { Todo } from '../types'
 import { todoSelector } from '../selectors'
 
