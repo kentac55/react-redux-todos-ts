@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { setVisibilityFilter } from '../actions'
 import { LinkView } from '../components/Link'
@@ -17,9 +17,9 @@ export const LinkContainer: React.FC<LinkContainerProps> = ({
 }) => {
   const active = useTypedSelector(filterSelector) === filter
   const dispatch = useDispatch()
-  const onClick = (): void => {
+  const onClick = useCallback((): void => {
     dispatch(setVisibilityFilter(filter))
-  }
+  }, [filter])
   return (
     <LinkView active={active} onClick={onClick}>
       {children}

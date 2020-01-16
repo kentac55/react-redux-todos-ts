@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { Footer } from './Footer'
 import { TodoListContainer } from '../containers/TodoList'
 import { AddTodoContainer } from '../containers/AddTodo'
@@ -6,33 +6,34 @@ import { AddTodoContainer } from '../containers/AddTodo'
 type AppViewProps = {
   loading: boolean
   loaded: boolean
-  error: {
-    type: string
-    message: string | null
-  } | null
+  error: ErrorViewProps | null
   loadDispatcher: () => void
 }
 
-export const ErrorView: React.FC<{ type: string; message: string | null }> = ({
-  type,
-  message,
-}) => {
-  if (message) {
-    return (
-      <>
-        <div>Welcome to Error Page🤗</div>
-        <pre>{type}</pre>
-        <pre>{message}</pre>
-      </>
-    )
-  } else {
-    return (
-      <>
-        <div>Welcome to Error Page🤗</div>
-        <pre>{type}</pre>
-      </>
-    )
-  }
+type ErrorViewProps = {
+  type: string
+  message: string | null
+}
+
+const ErrorView: React.FC<ErrorViewProps> = ({ type, message }) => {
+  return useMemo(() => {
+    if (message) {
+      return (
+        <>
+          <div>Welcome to Error Page🤗</div>
+          <pre>{type}</pre>
+          <pre>{message}</pre>
+        </>
+      )
+    } else {
+      return (
+        <>
+          <div>Welcome to Error Page🤗</div>
+          <pre>{type}</pre>
+        </>
+      )
+    }
+  }, [type, message])
 }
 
 export const AppView: React.FC<AppViewProps> = ({

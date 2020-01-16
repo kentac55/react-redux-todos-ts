@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 type LinkViewProps = {
   active: boolean
@@ -11,15 +11,17 @@ export const LinkView: React.FC<LinkViewProps> = ({
   children,
   onClick,
 }) => {
-  return (
-    <button
-      onClick={onClick}
-      disabled={active}
-      style={{
-        marginLeft: '4px',
-      }}
-    >
-      {children}
-    </button>
-  )
+  return useMemo(() => {
+    return (
+      <button
+        onClick={onClick}
+        disabled={active}
+        style={{
+          marginLeft: '4px',
+        }}
+      >
+        {children}
+      </button>
+    )
+  }, [active, children, onClick])
 }

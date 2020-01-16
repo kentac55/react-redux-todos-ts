@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleTodo } from '../actions'
 import { TodoListView } from '../components/TodoList'
@@ -8,13 +8,12 @@ import { todoSelector } from '../selectors'
 
 export const TodoListContainer: React.FC = () => {
   const dispatch = useDispatch()
-  const todos = useTypedSelector(todoSelector)
-  return (
-    <TodoListView
-      todos={todos}
-      dispatcher={(todo: Todo) => (): void => {
-        dispatch(toggleTodo.started({ todo }))
-      }}
-    />
+  const dispatcher = useCallback(
+    (todo: Todo) => {
+      dispatch(toggleTodo.started({ todo }))
+    },
+    [dispatch]
   )
+  const todos = useTypedSelector(todoSelector)
+  return <TodoListView todos={todos} dispatcher={dispatcher} />
 }
