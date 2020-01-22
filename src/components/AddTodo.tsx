@@ -1,11 +1,14 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, RefObject } from 'react'
 
 type AddTodoViewProps = {
   dispatcher: (text: string) => void
+  input: RefObject<HTMLInputElement>
 }
 
-export const AddTodoView: React.FC<AddTodoViewProps> = ({ dispatcher }) => {
-  const input = React.createRef<HTMLInputElement>()
+export const AddTodoView: React.FC<AddTodoViewProps> = ({
+  dispatcher,
+  input,
+}) => {
   return useMemo(() => {
     return (
       <div>
