@@ -22,7 +22,7 @@ export const AddTodoView: React.FC<AddTodoViewProps> = ({
             input.current.value = ''
           }}
         >
-          <input ref={input} />
+          <input ref={input} autoFocus={true} />
           <button type="submit">Add Todo</button>
         </form>
       </div>
