@@ -1,9 +1,12 @@
 import React, { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { initApp } from '../actions'
-import { AppView } from '../components/App'
 import { useTypedSelector } from '../hooks'
 import { appSelector } from '../selectors'
+import { AppView } from '../components/App'
+import { ErrorView } from '../components/Error'
+import { StartView } from '../components/Start'
+import { LoadingView } from '../components/Loading'
 
 export const AppContainer: React.FC = () => {
   const dispatch = useDispatch()
@@ -11,12 +14,15 @@ export const AppContainer: React.FC = () => {
   const loadDispatcher = useCallback((): void => {
     dispatch(initApp.started())
   }, [dispatch])
-  return (
-    <AppView
-      loading={loading}
-      loaded={loaded}
-      error={error}
-      loadDispatcher={loadDispatcher}
-    />
-  )
+
+  if (!loading && !loaded) {
+    return <StartView loadDispatcher={loadDispatcher} loaded={loaded} />
+  }
+  if (loading) {
+    return <LoadingView />
+  }
+  if (error) {
+    return <ErrorView {...error} />
+  }
+  return <AppView />
 }
