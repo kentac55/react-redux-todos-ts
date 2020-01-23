@@ -39,7 +39,7 @@ export const getTodos = actionCreator.async<
   GetTodosProp,
   AsyncOpResult<Todo[]>,
   Error
->('GetTogos')
+>('GetTodos')
 
 type InitProp = void
 export const initApp = actionCreator.async<
