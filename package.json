@@ -61,7 +61,8 @@
     "json-server": "^0.15.1",
     "lint-staged": "^9.4.3",
     "prettier": "^1.19.1",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "redux-saga-test-plan": "^4.0.0-rc.3"
   },
   "husky": {
     "hooks": {
