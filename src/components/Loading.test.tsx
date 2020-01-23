@@ -1,24 +1,10 @@
 import React from 'react'
-import { render, unmountComponentAtNode } from 'react-dom'
-import { act } from 'react-dom/test-utils'
+import { render } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
 import { LoadingView } from './Loading'
 
-let container: Element | null = null
+it('renders loading message properly', () => {
+  const { getByText } = render(<LoadingView />)
 
-beforeEach(() => {
-  container = document.createElement('div')
-  document.body.append(container)
-})
-
-afterEach(() => {
-  container && unmountComponentAtNode(container)
-  container?.remove()
-  container = null
-})
-
-it('renders ErrorView without a message', () => {
-  act(() => {
-    render(<LoadingView />, container)
-  })
-  expect(container?.querySelector('div')?.textContent).toBe('loading...')
+  expect(getByText('loading...'))
 })

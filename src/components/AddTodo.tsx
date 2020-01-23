@@ -22,10 +22,15 @@ export const AddTodoView: React.FC<AddTodoViewProps> = ({
             input.current.value = ''
           }}
         >
-          <input ref={input} autoFocus={true} />
+          <input
+            ref={input}
+            autoFocus={true}
+            aria-label={'new todo content'}
+            placeholder={'reactを極める'}
+          />
           <button type="submit">Add Todo</button>
         </form>
       </div>
     )
-  }, [dispatcher])
+  }, [dispatcher, input])
 }

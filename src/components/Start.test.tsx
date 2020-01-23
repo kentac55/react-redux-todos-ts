@@ -1,32 +1,11 @@
 import React from 'react'
-import { render, unmountComponentAtNode } from 'react-dom'
-import { act } from 'react-dom/test-utils'
+import { render } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
 import { StartView } from './Start'
 
-let container: Element | null = null
-
-beforeEach(() => {
-  container = document.createElement('div')
-  document.body.append(container)
-})
-
-afterEach(() => {
-  container && unmountComponentAtNode(container)
-  container?.remove()
-  container = null
-})
-
-it('renders TodoView', () => {
-  act(() => {
-    render(
-      <StartView
-        loadDispatcher={(): void => {
-          console.log('dummy')
-        }}
-        loaded={false}
-      />,
-      container
-    )
-  })
-  expect(container?.querySelector('div')?.textContent).toBe('starting...')
+it('renders starting message propertly and fire dispatcher', () => {
+  const dispatcher = jest.fn()
+  const { getByText } = render(<StartView loadDispatcher={dispatcher} />)
+  expect(getByText('starting...'))
+  expect(dispatcher).toHaveBeenCalledTimes(1)
 })

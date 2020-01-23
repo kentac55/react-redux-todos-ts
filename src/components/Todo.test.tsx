@@ -1,33 +1,16 @@
 import React from 'react'
-import { render, unmountComponentAtNode } from 'react-dom'
-import { act } from 'react-dom/test-utils'
+import { render, fireEvent } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
 import { TodoView } from './Todo'
 
-let container: Element | null = null
-
-beforeEach(() => {
-  container = document.createElement('div')
-  document.body.append(container)
-})
-
-afterEach(() => {
-  container && unmountComponentAtNode(container)
-  container?.remove()
-  container = null
-})
-
 it('renders TodoView', () => {
-  act(() => {
-    render(
-      <TodoView
-        onClick={(): void => {
-          console.log('dummy')
-        }}
-        text="someText"
-        completed={true}
-      />,
-      container
-    )
-  })
-  expect(container?.querySelector('li')?.textContent).toBe('someText')
+  const dispatcher = jest.fn()
+  const { getByText } = render(
+    <TodoView onClick={dispatcher} text="someText" completed={true} />
+  )
+
+  expect(getByText('someText'))
+  expect(dispatcher).toHaveBeenCalledTimes(0)
+  fireEvent.click(getByText('someText'))
+  expect(dispatcher).toHaveBeenCalledTimes(1)
 })

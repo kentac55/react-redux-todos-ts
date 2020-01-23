@@ -1,56 +1,36 @@
 import React from 'react'
-import { render, unmountComponentAtNode } from 'react-dom'
-import { act } from 'react-dom/test-utils'
+import { render, fireEvent } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
 import { LinkView } from './Link'
-let container: Element | null = null
 
-beforeEach(() => {
-  container = document.createElement('div')
-  document.body.append(container)
+it('renders LinkView with active and never fire an event', () => {
+  const isActive = true
+  const dispatcher = jest.fn()
+  const label = 'hoge'
+  const { getByLabelText } = render(
+    <LinkView active={isActive} onClick={dispatcher} label={label} />
+  )
+
+  expect(getByLabelText('show-hoge').textContent).toBe(label)
+  expect(getByLabelText('show-hoge')).toBeDisabled()
+  expect(dispatcher).toHaveBeenCalledTimes(0)
+  fireEvent.click(getByLabelText('show-hoge'))
+  expect(getByLabelText('show-hoge')).toBeDisabled()
+  expect(dispatcher).toHaveBeenCalledTimes(0)
 })
 
-afterEach(() => {
-  container && unmountComponentAtNode(container)
-  container?.remove()
-  container = null
-})
-
-it('renders LinkView with active', () => {
+it('renders LinkView with inactive and fire an event', () => {
   const isActive = false
-  const msg = 'hoge'
-  act(() => {
-    render(
-      <LinkView
-        active={isActive}
-        onClick={(): void => {
-          console.log('dummy')
-        }}
-      >
-        <p>{msg}</p>
-      </LinkView>,
-      container
-    )
-  })
-  expect(container?.querySelector('button')?.textContent).toBe(msg)
-  expect(container?.querySelector('button')?.disabled).toBe(isActive)
-})
+  const dispatcher = jest.fn()
+  const label = 'hoge'
+  const { getByLabelText } = render(
+    <LinkView active={isActive} onClick={dispatcher} label={label} />
+  )
 
-it('renders LinkView with inactive', () => {
-  const isActive = false
-  const msg = 'hoge'
-  act(() => {
-    render(
-      <LinkView
-        active={isActive}
-        onClick={(): void => {
-          console.log('dummy')
-        }}
-      >
-        <p>{msg}</p>
-      </LinkView>,
-      container
-    )
-  })
-  expect(container?.querySelector('button')?.textContent).toBe(msg)
-  expect(container?.querySelector('button')?.disabled).toBe(isActive)
+  expect(getByLabelText('show-hoge').textContent).toBe(label)
+  expect(getByLabelText('show-hoge')).not.toBeDisabled()
+  expect(dispatcher).toHaveBeenCalledTimes(0)
+  fireEvent.click(getByLabelText('show-hoge'))
+  expect(getByLabelText('show-hoge')).not.toBeDisabled()
+  expect(dispatcher).toHaveBeenCalledTimes(1)
 })

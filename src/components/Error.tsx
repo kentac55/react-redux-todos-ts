@@ -7,21 +7,17 @@ type ErrorViewProps = {
 
 export const ErrorView: React.FC<ErrorViewProps> = ({ type, message }) => {
   return useMemo(() => {
-    if (message) {
-      return (
-        <>
-          <div>Welcome to Error Page🤗</div>
-          <pre>{type}</pre>
-          <pre>{message}</pre>
-        </>
-      )
-    } else {
-      return (
-        <>
-          <div>Welcome to Error Page🤗</div>
-          <pre>{type}</pre>
-        </>
-      )
-    }
+    return (
+      <>
+        <h1 aria-label={'error page title'}>
+          Welcome to Error Page
+          <span role="img" aria-label="hugging-face">
+            🤗
+          </span>
+        </h1>
+        <pre aria-label={'error type'}>{type}</pre>
+        {message && <pre aria-label={'error message'}>{message}</pre>}
+      </>
+    )
   }, [type, message])
 }

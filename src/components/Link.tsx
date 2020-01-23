@@ -2,26 +2,27 @@ import React, { useMemo } from 'react'
 
 type LinkViewProps = {
   active: boolean
-  children: JSX.Element
+  label: string
   onClick: () => void
 }
 
 export const LinkView: React.FC<LinkViewProps> = ({
   active,
-  children,
+  label,
   onClick,
 }) => {
   return useMemo(() => {
     return (
       <button
+        aria-label={'show-' + label}
         onClick={onClick}
         disabled={active}
         style={{
           marginLeft: '4px',
         }}
       >
-        {children}
+        {label}
       </button>
     )
-  }, [active, children, onClick])
+  }, [active, label, onClick])
 }

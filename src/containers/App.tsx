@@ -16,7 +16,7 @@ export const AppContainer: React.FC = () => {
   }, [dispatch])
 
   if (!loading && !loaded) {
-    return <StartView loadDispatcher={loadDispatcher} loaded={loaded} />
+    return <StartView loadDispatcher={loadDispatcher} />
   }
   if (loading) {
     return <LoadingView />

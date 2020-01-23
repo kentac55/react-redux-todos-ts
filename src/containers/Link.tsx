@@ -7,12 +7,12 @@ import { VisibilityFilter } from '../types'
 import { useTypedSelector } from '../hooks'
 
 type LinkContainerProps = {
-  children: JSX.Element
+  label: string
   filter: VisibilityFilter
 }
 
 export const LinkContainer: React.FC<LinkContainerProps> = ({
-  children,
+  label,
   filter,
 }) => {
   const active = useTypedSelector(filterSelector) === filter
@@ -20,9 +20,5 @@ export const LinkContainer: React.FC<LinkContainerProps> = ({
   const onClick = useCallback((): void => {
     dispatch(setVisibilityFilter(filter))
   }, [dispatch, filter])
-  return (
-    <LinkView active={active} onClick={onClick}>
-      {children}
-    </LinkView>
-  )
+  return <LinkView active={active} onClick={onClick} label={label} />
 }

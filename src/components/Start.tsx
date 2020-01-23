@@ -2,16 +2,12 @@ import React, { useEffect, useMemo } from 'react'
 
 type StartViewProps = {
   loadDispatcher: () => void
-  loaded: boolean
 }
 
-export const StartView: React.FC<StartViewProps> = ({
-  loadDispatcher,
-  loaded,
-}) => {
+export const StartView: React.FC<StartViewProps> = ({ loadDispatcher }) => {
   useEffect(() => {
     loadDispatcher()
-  }, [loaded])
+  }, [loadDispatcher])
   return useMemo(() => {
     return <div>starting...</div>
   }, [])
