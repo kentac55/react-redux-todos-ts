@@ -19,7 +19,7 @@ export const LinkContainer: React.FC<LinkContainerProps> = ({
   const dispatch = useDispatch()
   const onClick = useCallback((): void => {
     dispatch(setVisibilityFilter(filter))
-  }, [filter])
+  }, [dispatch, filter])
   return (
     <LinkView active={active} onClick={onClick}>
       {children}
