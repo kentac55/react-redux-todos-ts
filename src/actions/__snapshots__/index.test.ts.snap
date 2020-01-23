@@ -1,0 +1,231 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should create a done action to add a todo 1`] = `
+Object {
+  "payload": Object {
+    "params": Object {
+      "text": "text",
+    },
+    "result": Object {
+      "contents": Object {
+        "completed": false,
+        "id": 0,
+        "text": "text",
+      },
+      "type": "Ok",
+    },
+  },
+  "type": "AddTodo_DONE",
+}
+`;
+
+exports[`should create a done action to get a todo 1`] = `
+Object {
+  "payload": Object {
+    "params": Object {
+      "id": 0,
+    },
+    "result": Object {
+      "contents": Object {
+        "completed": false,
+        "id": 0,
+        "text": "text",
+      },
+      "type": "Ok",
+    },
+  },
+  "type": "GetTodo_DONE",
+}
+`;
+
+exports[`should create a done action to get todos 1`] = `
+Object {
+  "payload": Object {
+    "params": undefined,
+    "result": Object {
+      "contents": Array [
+        Object {
+          "completed": false,
+          "id": 0,
+          "text": "text",
+        },
+      ],
+      "type": "Ok",
+    },
+  },
+  "type": "GetTodos_DONE",
+}
+`;
+
+exports[`should create a done action to init app 1`] = `
+Object {
+  "payload": Object {
+    "params": undefined,
+    "result": Object {
+      "contents": Array [
+        Object {
+          "completed": false,
+          "id": 0,
+          "text": "text",
+        },
+      ],
+      "type": "Ok",
+    },
+  },
+  "type": "InitApp_DONE",
+}
+`;
+
+exports[`should create a done action to toggle a todo 1`] = `
+Object {
+  "payload": Object {
+    "params": Object {
+      "todo": Object {
+        "completed": false,
+        "id": 0,
+        "text": "text",
+      },
+    },
+    "result": Object {
+      "contents": Object {
+        "completed": true,
+        "id": 0,
+        "text": "text",
+      },
+      "type": "Ok",
+    },
+  },
+  "type": "ToggleTodo_DONE",
+}
+`;
+
+exports[`should create a failed action to add a todo 1`] = `
+Object {
+  "error": true,
+  "payload": Object {
+    "error": [Error: Error],
+    "params": Object {
+      "text": "text",
+    },
+  },
+  "type": "AddTodo_FAILED",
+}
+`;
+
+exports[`should create a failed action to get a todo 1`] = `
+Object {
+  "error": true,
+  "payload": Object {
+    "error": [Error: Error],
+    "params": Object {
+      "id": 0,
+    },
+  },
+  "type": "GetTodo_FAILED",
+}
+`;
+
+exports[`should create a failed action to get todos 1`] = `
+Object {
+  "error": true,
+  "payload": Object {
+    "error": [Error: Error],
+    "params": undefined,
+  },
+  "type": "GetTodos_FAILED",
+}
+`;
+
+exports[`should create a failed action to init app 1`] = `
+Object {
+  "error": true,
+  "payload": Object {
+    "error": [Error: Error],
+    "params": undefined,
+  },
+  "type": "InitApp_FAILED",
+}
+`;
+
+exports[`should create a failed action to toggle a todo 1`] = `
+Object {
+  "error": true,
+  "payload": Object {
+    "error": [Error: Error],
+    "params": Object {
+      "todo": Object {
+        "completed": false,
+        "id": 0,
+        "text": "text",
+      },
+    },
+  },
+  "type": "ToggleTodo_FAILED",
+}
+`;
+
+exports[`should create a started action to add a todo 1`] = `
+Object {
+  "payload": Object {
+    "text": "text",
+  },
+  "type": "AddTodo_STARTED",
+}
+`;
+
+exports[`should create a started action to get a todo 1`] = `
+Object {
+  "payload": Object {
+    "id": 0,
+  },
+  "type": "GetTodo_STARTED",
+}
+`;
+
+exports[`should create a started action to get todos 1`] = `
+Object {
+  "payload": undefined,
+  "type": "GetTodos_STARTED",
+}
+`;
+
+exports[`should create a started action to init app 1`] = `
+Object {
+  "payload": undefined,
+  "type": "InitApp_STARTED",
+}
+`;
+
+exports[`should create a started action to toggle a todo 1`] = `
+Object {
+  "payload": Object {
+    "todo": Object {
+      "completed": false,
+      "id": 0,
+      "text": "text",
+    },
+  },
+  "type": "ToggleTodo_STARTED",
+}
+`;
+
+exports[`should create an action to set SHOW_ACTIVE filter 1`] = `
+Object {
+  "payload": "SHOW_ACTIVE",
+  "type": "SetVisibilityFilter",
+}
+`;
+
+exports[`should create an action to set SHOW_ALL filter 1`] = `
+Object {
+  "payload": "SHOW_ALL",
+  "type": "SetVisibilityFilter",
+}
+`;
+
+exports[`should create an action to set SHOW_COMPLETED filter 1`] = `
+Object {
+  "payload": "SHOW_COMPLETED",
+  "type": "SetVisibilityFilter",
+}
+`;
