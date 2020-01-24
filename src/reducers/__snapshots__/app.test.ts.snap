@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should handle { type: 'AddTodo_DONE', payload: [Object] } 1`] = `
+Object {
+  "error": null,
+  "loaded": true,
+  "loading": false,
+}
+`;
+
+exports[`should handle { type: 'AddTodo_DONE', payload: [Object] } 2`] = `
+Object {
+  "error": Object {
+    "message": null,
+    "type": "Internal",
+  },
+  "loaded": true,
+  "loading": false,
+}
+`;
+
+exports[`should handle { type: 'AddTodo_FAILED', payload: [Object], error: true } 1`] = `
+Object {
+  "error": Object {
+    "message": "error",
+    "type": "Error",
+  },
+  "loaded": true,
+  "loading": false,
+}
+`;
+
+exports[`should handle { type: 'AddTodo_STARTED', payload: [Object] } 1`] = `
+Object {
+  "error": null,
+  "loaded": false,
+  "loading": true,
+}
+`;
+
+exports[`should handle { type: 'GetTodo_DONE', payload: [Object] } 1`] = `
+Object {
+  "error": null,
+  "loaded": true,
+  "loading": false,
+}
+`;
+
+exports[`should handle { type: 'GetTodo_FAILED', payload: [Object], error: true } 1`] = `
+Object {
+  "error": Object {
+    "message": "error",
+    "type": "Error",
+  },
+  "loaded": true,
+  "loading": false,
+}
+`;
+
+exports[`should handle { type: 'GetTodo_STARTED', payload: [Object] } 1`] = `
+Object {
+  "error": null,
+  "loaded": false,
+  "loading": true,
+}
+`;
+
+exports[`should handle { type: 'GetTodos_DONE', payload: [Object] } 1`] = `
+Object {
+  "error": null,
+  "loaded": true,
+  "loading": false,
+}
+`;
+
+exports[`should handle { type: 'GetTodos_FAILED', payload: [Object], error: true } 1`] = `
+Object {
+  "error": Object {
+    "message": "error",
+    "type": "Error",
+  },
+  "loaded": true,
+  "loading": false,
+}
+`;
+
+exports[`should handle { type: 'GetTodos_STARTED', payload: undefined } 1`] = `
+Object {
+  "error": null,
+  "loaded": false,
+  "loading": true,
+}
+`;
+
+exports[`should handle { type: 'InitApp_DONE', payload: [Object] } 1`] = `
+Object {
+  "error": null,
+  "loaded": true,
+  "loading": false,
+}
+`;
+
+exports[`should handle { type: 'InitApp_FAILED', payload: [Object], error: true } 1`] = `
+Object {
+  "error": Object {
+    "message": "error",
+    "type": "Error",
+  },
+  "loaded": true,
+  "loading": false,
+}
+`;
+
+exports[`should handle { type: 'InitApp_STARTED', payload: undefined } 1`] = `
+Object {
+  "error": null,
+  "loaded": false,
+  "loading": true,
+}
+`;
+
+exports[`should handle { type: 'ToggleTodo_DONE', payload: [Object] } 1`] = `
+Object {
+  "error": null,
+  "loaded": true,
+  "loading": false,
+}
+`;
+
+exports[`should handle { type: 'ToggleTodo_FAILED', payload: [Object], error: true } 1`] = `
+Object {
+  "error": Object {
+    "message": "error",
+    "type": "Error",
+  },
+  "loaded": true,
+  "loading": false,
+}
+`;
+
+exports[`should handle { type: 'ToggleTodo_STARTED', payload: [Object] } 1`] = `
+Object {
+  "error": null,
+  "loaded": false,
+  "loading": true,
+}
+`;
+
+exports[`should return initial state 1`] = `
+Object {
+  "error": null,
+  "loaded": false,
+  "loading": false,
+}
+`;

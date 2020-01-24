@@ -2,7 +2,7 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import { addTodo, initApp, getTodo, getTodos, toggleTodo } from '../actions'
 import { AsyncOpResult } from '../types'
 
-type AppState = {
+export type AppState = {
   loading: boolean
   loaded: boolean
   error: {

@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should handle { todos: [] } 1`] = `
+Object {
+  "todos": Array [
+    Object {
+      "completed": false,
+      "id": 0,
+      "text": "hoge",
+    },
+    Object {
+      "completed": true,
+      "id": 1,
+      "text": "fuga",
+    },
+    Object {
+      "completed": false,
+      "id": 2,
+      "text": "piyo",
+    },
+  ],
+}
+`;
+
+exports[`should handle { todos: [] } 2`] = `
+Object {
+  "todos": Array [],
+}
+`;
+
+exports[`should handle { todos: [] } 3`] = `
+Object {
+  "todos": Array [
+    Object {
+      "completed": false,
+      "id": 0,
+      "text": "hoge",
+    },
+    Object {
+      "completed": true,
+      "id": 1,
+      "text": "fuga",
+    },
+    Object {
+      "completed": false,
+      "id": 2,
+      "text": "piyo",
+    },
+  ],
+}
+`;
+
+exports[`should handle { todos: [] } 4`] = `
+Object {
+  "todos": Array [],
+}
+`;
+
+exports[`should handle { todos: [Array] } 1`] = `
+Object {
+  "todos": Array [
+    Object {
+      "completed": false,
+      "id": 0,
+      "text": "hoge",
+    },
+    Object {
+      "completed": true,
+      "id": 1,
+      "text": "fuga",
+    },
+    Object {
+      "completed": false,
+      "id": 2,
+      "text": "piyo",
+    },
+    Object {
+      "completed": false,
+      "id": 4,
+      "text": "test",
+    },
+  ],
+}
+`;
+
+exports[`should handle { todos: [Array] } 2`] = `
+Object {
+  "todos": Array [
+    Object {
+      "completed": false,
+      "id": 0,
+      "text": "hoge",
+    },
+    Object {
+      "completed": true,
+      "id": 1,
+      "text": "fuga",
+    },
+    Object {
+      "completed": false,
+      "id": 2,
+      "text": "piyo",
+    },
+  ],
+}
+`;
+
+exports[`should handle { todos: [Array] } 3`] = `
+Object {
+  "todos": Array [
+    Object {
+      "completed": true,
+      "id": 0,
+      "text": "hoge",
+    },
+    Object {
+      "completed": true,
+      "id": 1,
+      "text": "fuga",
+    },
+    Object {
+      "completed": false,
+      "id": 2,
+      "text": "piyo",
+    },
+  ],
+}
+`;
+
+exports[`should handle { todos: [Array] } 4`] = `
+Object {
+  "todos": Array [
+    Object {
+      "completed": false,
+      "id": 0,
+      "text": "hoge",
+    },
+    Object {
+      "completed": true,
+      "id": 1,
+      "text": "fuga",
+    },
+    Object {
+      "completed": false,
+      "id": 2,
+      "text": "piyo",
+    },
+  ],
+}
+`;

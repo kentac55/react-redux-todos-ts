@@ -2,7 +2,7 @@ import { VisibilityFilter } from '../types'
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import { setVisibilityFilter } from '../actions'
 
-type VisibilityFilterState = {
+export type VisibilityFilterState = {
   visibilityFilter: VisibilityFilter
 }
 

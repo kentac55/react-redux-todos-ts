@@ -2,7 +2,7 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import { Todo } from '../types'
 import { addTodo, initApp, getTodos, toggleTodo } from '../actions'
 
-type TodoState = {
+export type TodoState = {
   todos: Todo[]
 }
 
